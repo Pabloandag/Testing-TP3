@@ -4,13 +4,14 @@
 #define LEDS_ALL_ON  0xFFFF
 #define LED_OFFSET   1
 #define LSB          1
+#define LEDS_NUMBER  16
 
 static uint16_t *leds;
 static LedError_t registrarError;
 
 
 uint16_t LedToMask(uint8_t led){
-    if(led > 16){
+    if(led > LEDS_NUMBER){
         registrarError();
     }
     return (LSB << (led - LED_OFFSET));
@@ -32,11 +33,7 @@ void Leds_Off(uint8_t led){
 }
 
 bool Leds_Get_State(uint8_t led){
-    if((*leds & LedToMask(led)) != 0 ){
-        return true;
-    }else{
-        return false;
-    }
+    return((*leds & LedToMask(led)) != 0 );
 }
 
 void Leds_All_On(void){

@@ -84,8 +84,6 @@ void test_get_led_prendido (void){
 
 // Se puede consultar el estado de un led
 void test_get_led_apagado (void){
-    uint16_t ledsVirtuales = 0xFFFF;
-    Leds_Off(5);
     TEST_ASSERT_FALSE(Leds_Get_State(5));
 }
 
